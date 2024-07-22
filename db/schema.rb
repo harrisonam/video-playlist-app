@@ -19,4 +19,17 @@ ActiveRecord::Schema[7.0].define(version: 20_240_715_200_615) do
     t.datetime 'updated_at', null: false
   end
 
+  create_table 'videos', force: :cascade do |t|
+    t.integer 'playlist_id', null: false
+    t.string 'video_id'
+    t.string 'title'
+    t.text 'description'
+    t.string 'thumbnail_url'
+    t.integer 'views'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['playlist_id'], name: 'index_videos_on_playlist_id'
+  end
+
+  add_foreign_key 'videos', 'playlists'
 end
